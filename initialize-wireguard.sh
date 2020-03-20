@@ -81,8 +81,8 @@ read -p "Enter the name of your server's public interface: " PUBLIC_INT
 	echo "PrivateKey = $(</etc/wireguard/privatekey)"
 	echo "Address = 10.1.1.1/24"
 	echo "ListenPort = 51820"
-	echo "PostUp = iptables -A INPUT -i $PUBLIC_INT -p udp -m multiport --dports 51820 -m state --state NEW -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o $PUBLIC_INT -j MASQUERADE; iptables -A INPUT -i wg0 -p udp -m multiport --dports 53 -m state --state NEW -j ACCEPT; iptables -A INPUT -i wg0 -p tcp -m multiport --dports 53 -m state --state NEW -j ACCEPT; systemctl start unbound"
-	echo "PostDown = iptables -D INPUT -i $PUBLIC_INT -p udp -m multiport --dports 51820 -m state --state NEW -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $PUBLIC_INT -j MASQUERADE; iptables -D INPUT -i wg0 -p udp -m multiport --dports 53 -m state --state NEW -j ACCEPT; iptables -D INPUT -i wg0 -p tcp -m multiport --dports 53 -m state --state NEW -j ACCEPT; systemctl stop unbound"
+	echo "PostUp = iptables -A INPUT -i $PUBLIC_INT -p udp -m multiport --dports 51820 -m state --state NEW -j ACCEPT; iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -s 10.1.1.0/24 -j MASQUERADE; iptables -A INPUT -i wg0 -p udp -m multiport --dports 53 -m state --state NEW -j ACCEPT; iptables -A INPUT -i wg0 -p tcp -m multiport --dports 53 -m state --state NEW -j ACCEPT; systemctl start unbound"
+	echo "PostDown = iptables -D INPUT -i $PUBLIC_INT -p udp -m multiport --dports 51820 -m state --state NEW -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -s 10.1.1.0/24 -j MASQUERADE; iptables -D INPUT -i wg0 -p udp -m multiport --dports 53 -m state --state NEW -j ACCEPT; iptables -D INPUT -i wg0 -p tcp -m multiport --dports 53 -m state --state NEW -j ACCEPT; systemctl stop unbound"
 } > /etc/wireguard/wg0.conf
 
 umask 0022
