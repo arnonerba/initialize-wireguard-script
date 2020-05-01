@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ################################################################################
 # This bash script is designed to initialize a fresh Ubuntu 19.10+ VPS as a    #
