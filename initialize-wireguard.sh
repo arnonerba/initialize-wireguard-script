@@ -93,7 +93,7 @@ systemctl enable wg-quick@wg0
 # Step 4: Enable kernel IP forwarding                                          #
 ################################################################################
 
-sed -i s/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/ /etc/sysctl.d/99-sysctl.conf
+sed --in-place --follow-symlinks 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.d/99-sysctl.conf
 
 ################################################################################
 # Step 5: Install and configure Unbound                                        #
