@@ -112,6 +112,8 @@ wget -O /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
 	echo "access-control: ::0/0 refuse"
 	echo "access-control: 10.1.1.0/24 allow"
 	echo "private-address: 10.1.1.0/24"
+	echo "hide-identity: yes"
+	echo "hide-version: yes"
 	echo "qname-minimisation: yes"
 	echo "root-hints: \"/var/lib/unbound/root.hints\""
 	echo "auto-trust-anchor-file: \"/var/lib/unbound/root.key\""
