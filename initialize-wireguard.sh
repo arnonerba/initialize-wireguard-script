@@ -106,6 +106,13 @@ systemctl enable unbound
 wget -O /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
 
 {
+	echo "#!/bin/sh"
+	echo "wget -q -O /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache"
+} > /etc/cron.monthly/root-hints
+
+chmod +x /etc/cron.monthly/root-hints
+
+{
 	echo "server:"
 	echo "interface: 10.1.1.1"
 	echo "access-control: 0.0.0.0/0 refuse"
