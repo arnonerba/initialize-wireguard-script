@@ -101,7 +101,7 @@ sed --in-place --follow-symlinks 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1
 
 apt -y install unbound unbound-host
 
-systemctl disable unbound
+systemctl enable unbound
 
 wget -O /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
 
