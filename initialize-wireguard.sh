@@ -8,6 +8,7 @@
 # https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/              #
 # https://www.stavros.io/posts/how-to-configure-wireguard/                     #
 # https://wiki.archlinux.org/index.php/WireGuard                               #
+# https://gist.github.com/sethenoka/db8b165179e0b6488f544af404b9ff0f           #
 ################################################################################
 
 if [ "$(id -u)" -ne 0 ]; then
